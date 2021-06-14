@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Авторизация
+{% endblock %}
+
+{% block login %}
+    {% if is_a %}
+    Выйти
+    {% else %}
+    Войти
+    {% endif %}
+{% endblock %}
+
+
+{% block content %}
+    <h3>Авторизация</h3>
+    <form method="post">
+        {% csrf_token %}
+        <div class="form-group">
+          <label class="form-label mt-4">Имя пользователя</label>
+          {{ form.username}}
+          <small id="emailHelp" class="form-text text-muted">Его будут видеть другие в комментариях)</small>
+        </div>
+        <div class="form-group">
+          <label class="form-label mt-4">Пароль</label>
+          {{ form.password }}
+        </div>
+        <button type="submit" class="btn btn-success">Войти</button>
+        <spam>{{error}}</spam>
+    </form>
+{% endblock %}

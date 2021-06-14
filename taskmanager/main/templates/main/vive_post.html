@@ -1,0 +1,45 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+{{ posts.title }}
+{% endblock %}
+
+{% block login %}
+    {% if is_a %}
+    Выйти
+    {% else %}
+    Войти
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2>{{ posts.title }}</h2>
+    <p>{{ posts.discription }}</p>
+
+    <h4>Комментарии:</h4>
+    {% if comment %}
+        {% for el in comment %}
+            <div class="toast show" role="alert" aria-live="assertive" aria-atomic="true">
+                  <div class="toast-header">
+                    <strong class="me-auto">{{ el.autor }}</strong>
+                    <small>: - {{ el.created }}</small>
+                  </div>
+                  <div class="toast-body">
+                    {{ el.body }}
+                  </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <p>Пока нет ни одного комментария((</p>
+    {% endif %}
+    {% if is_a %}
+        <form method="post" >
+            {% csrf_token %}
+            {{ form.body }}<br>
+            <button type="submit" class="btn btn-success">Добавить</button>
+            <spam>{{error}}</spam>
+        </form>i
+    {% else %}
+        <div class="alert alert-dismissible alert-danger"><a class="alert-link" href="{% url 'login' %}">Неавторизованные</a> пользователи не могут оставлять комментарии</div>
+    {% endif %}
+{% endblock %}

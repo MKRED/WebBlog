@@ -1,0 +1,28 @@
+{% extends 'main/base.html' %}
+
+{% block title %}
+Блог
+{% endblock %}
+
+{% block login %}
+    {% if is_a %}
+    Выйти
+    {% else %}
+    Войти
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+    <h2 class="text-muted">Welcone! {{ user }}</h2>
+    {% for el in posts %}
+        <a href="{% url 'post_detal' id=el.id %}">
+            <div class="card border-primary mb-3">
+                <div class="card-header">{{ el.title }}</div>
+                <div class="card-body">
+                <p class="card-text"> {{ el.discription }} </p>
+                </div>
+            </div>
+        </a>
+    {% endfor %}
+
+{% endblock %}
