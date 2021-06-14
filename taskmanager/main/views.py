@@ -12,7 +12,7 @@ def index(request):
         user = request.user
 
 
-    posts = Post.objects.all()
+    posts = Post.objects.order_by('-id')
     return render(request, 'main/index.html', {'posts': posts, 'is_a': is_a, 'user': user})
 
 def Auth(request):

@@ -38,7 +38,7 @@
             {{ form.body }}<br>
             <button type="submit" class="btn btn-success">Добавить</button>
             <spam>{{error}}</spam>
-        </form>i
+        </form>
     {% else %}
         <div class="alert alert-dismissible alert-danger"><a class="alert-link" href="{% url 'login' %}">Неавторизованные</a> пользователи не могут оставлять комментарии</div>
     {% endif %}
